@@ -1,0 +1,67 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Educational Platform API",
+    "description": "API for managing courses and quizzes."
+  },
+  "paths": {
+    "/api/courses": {
+      "post": {
+        "summary": "Create a course",
+        "parameters": [{ "name": "course", "in": "body", "required": true, "schema": { "type": "object", "properties": { "title": { "type": "string" }, "description": { "type": "string" }, "duration": { "type": "number" }, "instructorName": { "type": "string" }, "language": { "type": "string" }, "level": { "type": "string" }, "price": { "type": "number" }, "status": { "type": "string" }, "visibility": { "type": "string" } } } }],
+        "responses": { "201": { "description": "Course created" }, "400": { "description": "Invalid input" } }
+      },
+      "get": {
+        "summary": "Retrieve all courses",
+        "responses": { "200": { "description": "List of courses" } }
+      }
+    },
+    "/api/courses/{id}": {
+      "get": {
+        "summary": "Retrieve a specific course",
+        "parameters": [{ "name": "id", "in": "path", "required": true }],
+        "responses": { "200": { "description": "Course found" }, "404": { "description": "Course not found" } }
+      },
+      "put": {
+        "summary": "Update a course",
+        "parameters": [{ "name": "id", "in": "path", "required": true }, { "name": "course", "in": "body", "required": true }],
+        "responses": { "200": { "description": "Course updated" }, "404": { "description": "Course not found" }, "400": { "description": "Invalid input" } }
+      },
+      "delete": {
+        "summary": "Delete a course",
+        "parameters": [{ "name": "id", "in": "path", "required": true }],
+        "responses": { "200": { "description": "Course deleted" }, "404": { "description": "Course not found" } }
+      }
+    },
+    "/api/courses/{courseId}/quizzes": {
+      "post": {
+        "summary": "Create a quiz for a course",
+        "parameters": [{ "name": "courseId", "in": "path", "required": true }, { "name": "quiz", "in": "body", "required": true }],
+        "responses": { "201": { "description": "Quiz created" }, "404": { "description": "Course not found" }, "400": { "description": "Invalid input" } }
+      },
+      "get": {
+        "summary": "Retrieve all quizzes for a course",
+        "parameters": [{ "name": "courseId", "in": "path", "required": true }],
+        "responses": { "200": { "description": "List of quizzes" } }
+      }
+    },
+    "/api/quizzes/{id}": {
+      "get": {
+        "summary": "Retrieve a specific quiz",
+        "parameters": [{ "name": "id", "in": "path", "required": true }],
+        "responses": { "200": { "description": "Quiz found" }, "404": { "description": "Quiz not found" } }
+      },
+      "put": {
+        "summary": "Update a quiz",
+        "parameters": [{ "name": "id", "in": "path", "required": true }, { "name": "quiz", "in": "body", "required": true }],
+        "responses": { "200": { "description": "Quiz updated" }, "404": { "description": "Quiz not found" }, "400": { "description": "Invalid input" } }
+      },
+      "delete": {
+        "summary": "Delete a quiz",
+        "parameters": [{ "name": "id", "in": "path", "required": true }],
+        "responses": { "200": { "description": "Quiz deleted" }, "404": { "description": "Quiz not found" } }
+      }
+    }
+  }
+}
